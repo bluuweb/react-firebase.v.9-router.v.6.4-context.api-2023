@@ -1,17 +1,29 @@
+import { useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { login } from "../config/firebase";
+import { useUserContext } from "../context/UserContext";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("test@test.com");
+    const [password, setPassword] = useState("123123");
+
+    const { user } = useUserContext();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) navigate("/dashboard");
+    }, [user]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const res = await login(email, password);
-            console.log(res);
+            await login({ email, password });
+            console.log("user logged in");
         } catch (error) {
-            console.log(error);
+            console.log(error.code);
+            console.log(error.message);
         }
     };
 

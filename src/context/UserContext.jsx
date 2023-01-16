@@ -1,8 +1,9 @@
-import { onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { createContext } from "react";
+
+// pertenece a config de firebase
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase";
 
 const UserContext = createContext();
@@ -10,18 +11,15 @@ const UserContext = createContext();
 export default function UserContextProvider({ children }) {
     const [user, setUser] = useState(false);
 
-    // Check si user está activo
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        console.log("useEffect en acción");
+        const unsuscribe = onAuthStateChanged(auth, (user) => {
             console.log(user);
             setUser(user);
         });
-
-        return unsubscribe;
+        return unsuscribe;
     }, []);
 
-    // Cuando inicia la aplicación siempre el user estará false
-    // Pero al terminar el useEffect, el user podrá ser null o un objeto
     if (user === false) return <p>Loading app...</p>;
 
     return (

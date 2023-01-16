@@ -1,5 +1,5 @@
 {
-  "name": "desde-cero",
+  "name": "react-firebase9-formik-mui",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,6 +9,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/roboto": "^4.5.8",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/lab": "^5.0.0-alpha.115",
+    "@mui/material": "^5.11.4",
     "firebase": "^9.14.0",
     "formik": "^2.2.9",
     "react": "^18.2.0",

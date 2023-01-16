@@ -30,8 +30,8 @@ const Register = () => {
     };
 
     const validationSchema = Yup.object().shape({
-        email: Yup.string().email().required(),
-        password: Yup.string().trim().min(6).required(),
+        email: Yup.string().email("Email no válido").required("Email obligatorio"),
+        password: Yup.string().trim().min(6, "Mínimo 6 carácteres").required("Password obligatorio"),
     });
 
     return (
